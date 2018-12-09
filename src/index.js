@@ -3,14 +3,18 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import Music from './Music/Music';
 import * as serviceWorker from './serviceWorker';
-
+import { Provider } from 'mobx-react';
+import ArtistsStore from './stores/ArtistsStore'
 // Importing CSS file
 import './App.css';
 
+const artistsStore = new ArtistsStore();
 const ROOT_ELEMENT = document.getElementById('root');
 
 ReactDOM.render(
-    <Music />,
+    <Provider artistsStore={artistsStore}>
+        <Music />
+    </Provider>,
     ROOT_ELEMENT
 );
 

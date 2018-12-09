@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { inject, observer } from 'mobx-react';
 
+@inject('artistsStore')
+@observer
 export default class From extends Component {
-    static propTypes = {
-        name: PropTypes.string,
-        fetchArtistsData: PropTypes.func.isRequired,
-    }
     onSubmitForm = e => {
         e.preventDefault();
         const name = this.input.value;
-        this.props.fetchArtistsData(name);
+        this.props.artistsStore.fetchArtistsData(name);
     }
     render() {
-        const { name } = this.props; 
+        const { name } = this.props.propsartistsStore;
         return (
             <form className="form" onSubmit={(e) => this.onSubmitForm(e)} >
                 <input

@@ -1,48 +1,22 @@
 import React, { Component, Fragment } from 'react';
 import Form from './Form';
 import Artist from './Artist';
+import { inject, observer } from 'mobx-react';
+import { dec } from 'mobx';
 
-const URL = 'https://musicdemons.com/api/v1/person/organic-search';
-
-export default class Music extends Component {
-    state = {
-        status: 'initial',
-        artists: [],
-        temp: 'john',
-        error: null,
-    }
+@inject('artistsStore')
+@observer
+@dec class Music extends Component {
     componentDidMount() {
-        this.fetchArtistsData(this.state.temp);
-    }
-    fetchArtistsData = async (name) => {
-        this.setState({
-            status: 'pending',
-            artists: [],
-            error: null,
-            temp: name.replace(/[^\w\s]/, ''),
-        });
-        try {
-            const response = await fetch(`${URL}/${name}`);
-            const artists = await response.json();
-            this.setState({
-                status: 'success',
-                artists,
-            });
-        } catch(error) {
-            this.setState({
-                error,
-                status: 'error',
-                temp: '',
-            });
-        }
+        this.props.artistsStore.fetchArtistsData(this.state.temp);
     }
     render() {
-        const { status, artists, error, temp } = this.state;
+        const { status, artists, error } = this.state.artistsStore;
         return (
             <Fragment>
                 <header>
                     <h1>Artists Search</h1>
-                    <Form fetchArtistsData={this.fetchArtistsData} name={temp}/>
+                    <Form />
                 </header>
                 {status === 'pending' && (
                     <Fragment>
@@ -70,3 +44,5 @@ export default class Music extends Component {
         );
     }
 }
+
+export default Music
