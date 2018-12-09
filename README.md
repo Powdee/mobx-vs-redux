@@ -1,4 +1,17 @@
+# MobX vs Redux
+### different between the two approaches
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Simple React app made with create-react-app that uses component state (setState) as its state management.
+About the app - app fetch data from open source API https://musicdemons.com/api - listed all artists with the date of their born
+
+Start --> component state to **MobX** using branch **mobx**
+Start --> component state to **Redux** using branch **redux**
+During the process we'll see what is similar and different between the two approaches.
+
+We'll then use **TypeScript** and **Flow** to see the different approaches
+MobX with **TypeScript** will be in **mobx-typescript** branch and with Flow will be in branch **mobx-flow**
+Redux with **TypeScript** will be in **redux-typescript** branch and with Flow will be in branch **redux-flow**
 
 ## Available Scripts
 
