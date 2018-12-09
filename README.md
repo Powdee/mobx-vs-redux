@@ -3,7 +3,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).<br>
 Simple React app made with create-react-app that uses component state (setState) as its state management.<br>
-About the app - app fetch data from open source API https://musicdemons.com/api - listed all artists with the date of their born<br>
+About the app - fetching data with help of async/await from open source API https://musicdemons.com/api - listed all artists with the name and date of their born<br>
 
 Start --> component state to **MobX** using branch **mobx**<br>
 Start --> component state to **Redux** using branch **redux**<br>
