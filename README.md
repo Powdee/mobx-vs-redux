@@ -13,6 +13,9 @@ We'll then use **TypeScript** and **Flow** to see the different approaches<br>
 MobX with **TypeScript** will be in **mobx-typescript** branch and with Flow will be in branch **mobx-flow**<br>
 Redux with **TypeScript** will be in **redux-typescript** branch and with Flow will be in branch **redux-flow**<br>
 
+ScreenShot: 
+![Screenshot](screenshot.png)
+
 ## Available Scripts
 
 In the project directory, you can run:
