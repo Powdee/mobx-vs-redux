@@ -9,7 +9,10 @@ export default class From extends Component {
     onSubmitForm = e => {
         e.preventDefault();
         const name = this.input.value;
-        this.props.fetchArtistsData(name);
+        this.input.value = '';
+        if (this.props.name !== name) {
+            this.props.fetchArtistsData(name);
+        }
     }
     render() {
         const { name } = this.props; 
