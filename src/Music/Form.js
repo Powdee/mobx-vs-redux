@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { fetchArtistsData } from '../action';
 
-export default class From extends Component {
+class Form extends Component {
     static propTypes = {
         name: PropTypes.string,
         fetchArtistsData: PropTypes.func.isRequired,
@@ -27,3 +29,13 @@ export default class From extends Component {
         );
     }
 }
+
+const mapStateToProps = (state) => ({
+    name: state.temp,
+});
+
+const dispatchStateToProps = (dispatch) => ({
+    fetchArtistsData: (name) => dispatch(fetchArtistsData(name))
+});
+
+export default connect(mapStateToProps, dispatchStateToProps)(Form);

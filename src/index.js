@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import Music from './Music/Music';
 import * as serviceWorker from './serviceWorker';
+import { Provider } from 'react-redux'; 
+import store from './store';
 
 // Importing CSS file
 import './App.css';
@@ -10,7 +12,9 @@ import './App.css';
 const ROOT_ELEMENT = document.getElementById('root');
 
 ReactDOM.render(
-    <Music />,
+    <Provider store={store}>
+        <Music />
+    </Provider>,
     ROOT_ELEMENT
 );
 

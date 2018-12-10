@@ -1,48 +1,20 @@
 import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
 import Form from './Form';
 import Artist from './Artist';
+import { fetchArtistsData } from '../action';
 
-const URL = 'https://musicdemons.com/api/v1/person/organic-search';
-
-export default class Music extends Component {
-    state = {
-        status: 'initial',
-        artists: [],
-        temp: 'john',
-        error: null,
-    }
+class Music extends Component {
     componentDidMount() {
-        this.fetchArtistsData(this.state.temp);
-    }
-    fetchArtistsData = async (name) => {
-        this.setState({
-            status: 'pending',
-            artists: [],
-            error: null,
-            temp: name.replace(/[^\w\s]/, ''),
-        });
-        try {
-            const response = await fetch(`${URL}/${name}`);
-            const artists = await response.json();
-            this.setState({
-                status: 'success',
-                artists,
-            });
-        } catch(error) {
-            this.setState({
-                error,
-                status: 'error',
-                temp: '',
-            });
-        }
+        this.props.fetchArtistsData(this.props.temp);
     }
     render() {
-        const { status, artists, error, temp } = this.state;
+        const { status, artists, error } = this.props;
         return (
             <Fragment>
                 <header>
                     <h1>Artists Search</h1>
-                    <Form fetchArtistsData={this.fetchArtistsData} name={temp}/>
+                    <Form />
                 </header>
                 {status === 'pending' && (
                     <Fragment>
@@ -70,3 +42,16 @@ export default class Music extends Component {
         );
     }
 }
+
+const mapStateToProps = (state) => ({
+    status: state.status,
+    artists: state.artists,
+    error: state.error,
+    temp: state.temp,
+});
+
+const dispatchStateToProps = (dispatch) => ({
+    fetchArtistsData: (name) => dispatch(fetchArtistsData(name))
+});
+
+export default connect(mapStateToProps, dispatchStateToProps)(Music);
