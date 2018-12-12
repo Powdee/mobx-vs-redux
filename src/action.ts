@@ -1,21 +1,27 @@
 const URL = 'https://musicdemons.com/api/v1/person/organic-search';
 
-const fetchArtistsData = (name) => {
-    return async (dispatch) => {
+enum CounterActionTypes {
+    PENDING_DATA = "PENDING_DATA",
+    SUCCESS_DATA = "SUCCESS_DATA",
+    ERROR_DATA = "ERROR_DATA",
+}
+
+const fetchArtistsData = (name: any) => {
+    return async (dispatch: any): Promise<void> => {
         dispatch({
-            type: 'PENDING_DATA',
+            type: CounterActionTypes.PENDING_DATA,
             name: name.replace(/[^\w\s]/, ''),
         });
         try {
             const response = await fetch(`${URL}/${name}`);
             const artists = await response.json();
             dispatch({
-                type: 'SUCCESS_DATA',
+                type: CounterActionTypes.SUCCESS_DATA,
                 artists,
             });
         } catch(error) {
             dispatch({
-                type: 'ERROR_DATA',                
+                type: CounterActionTypes.ERROR_DATA,
                 error,
             });
         }

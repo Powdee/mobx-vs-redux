@@ -1,27 +1,35 @@
-import React, { Component, Fragment } from 'react';
+import * as React from 'react';
 import { connect } from 'react-redux';
 import Form from './Form';
-import Artist from './Artist';
+import { Artist } from './Artist';
 import { fetchArtistsData } from '../action';
 
-class Music extends Component {
+interface IMusicProps {
+    fetchArtistsData: (name: string | null) => void;
+    temp: string;
+    status: string;
+    artists: any;
+    error: string;
+}
+
+class Music extends React.Component<IMusicProps> {
     componentDidMount() {
         this.props.fetchArtistsData(this.props.temp);
     }
-    render() {
+    public render() {
         const { status, artists, error } = this.props;
         return (
-            <Fragment>
+            <React.Fragment>
                 <header>
                     <h1>Artists Search</h1>
                     <Form />
                 </header>
                 {status === 'pending' && (
-                    <Fragment>
+                    <React.Fragment>
                         <div className="circle item0"></div>
                         <div className="circle item1"></div>
                         <div className="circle item2"></div>
-                    </Fragment>
+                    </React.Fragment>
                 )}
                 {status === 'success' &&
                     artists.length === 0 && (
@@ -29,8 +37,9 @@ class Music extends Component {
                 )}
                 {(status === 'error' || error) && <h2> Oops... error :( </h2> }
                 <section>
-                    {artists.map(({id, born, first_name, last_name }, i) => 
+                    {artists.map(({id, born, first_name, last_name }: any, i: number) => 
                         <Artist
+                            id={i}
                             key={id}
                             born={born}
                             firstName={first_name}
@@ -38,20 +47,20 @@ class Music extends Component {
                         />
                     )}
                 </section>
-            </Fragment>
+            </React.Fragment>
         );
     }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: any) => ({
     status: state.status,
     artists: state.artists,
     error: state.error,
     temp: state.temp,
 });
 
-const dispatchStateToProps = (dispatch) => ({
-    fetchArtistsData: (name) => dispatch(fetchArtistsData(name))
+const dispatchStateToProps = (dispatch: any) => ({
+    fetchArtistsData: (name: any) => dispatch(fetchArtistsData(name))
 });
 
 export default connect(mapStateToProps, dispatchStateToProps)(Music);
