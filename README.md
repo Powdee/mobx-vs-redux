@@ -10,11 +10,13 @@ Start --> component state to **Redux** using branch **redux**<br>
 During the process we'll see what is similar and different between the two approaches.<br>
 
 We'll then use **TypeScript** and **Flow** to see the different approaches<br>
-MobX with **TypeScript** will be in **mobx-typescript** branch and with Flow will be in branch **mobx-flow**<br>
-Redux with **TypeScript** will be in **redux-typescript** branch and with Flow will be in branch **redux-flow**<br>
+MobX with **TypeScript** will be in **mobx-typescript** branch and with *Flow* will be in branch **mobx-flow**<br>
+Redux with **TypeScript** will be in **redux-typescript** branch and with *Flow* will be in branch **redux-flow**<br>
 
 ScreenShot: 
 ![Screenshot](screenshot.png)
+
+*Checkout this video* (Comparing Redux and MobX) => https://www.youtube.com/watch?v=ZGVwMkrL2n0
 
 ## Available Scripts
 
