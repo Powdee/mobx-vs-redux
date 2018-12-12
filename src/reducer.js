@@ -19,6 +19,7 @@ export default (state = {}, action) => {
                 error: action.error,
                 status: 'error',
                 temp: '',
+                artists: [],
             }
         default:
             return state;

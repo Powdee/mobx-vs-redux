@@ -11,6 +11,7 @@ class Form extends Component {
     onSubmitForm = e => {
         e.preventDefault();
         const name = this.input.value;
+        this.input.value = '';
         this.props.fetchArtistsData(name);
     }
     render() {
